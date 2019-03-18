@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ThousandCounter</string>
+    <string name="start_button_text">start</string>
+    <string name="stop_button_text">stop</string>
+</resources>
