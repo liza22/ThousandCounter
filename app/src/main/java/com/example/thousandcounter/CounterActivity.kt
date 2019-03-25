@@ -37,16 +37,10 @@ class CounterActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (currNumber != 0) textNumber.text = currNumber.toString()
+    override fun onResume() {
+        super.onResume()
+        if (currNumber != 0) textNumber.text = numToString(currNumber)
         if (state == State.InProgress) startTask(currNumber)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString("CURRENT_NUMBER", currNumber.toString())
-        outState.putSerializable("CURR_STATE", state)
-        super.onSaveInstanceState(outState)
     }
 
     override fun onPause() {
@@ -54,9 +48,10 @@ class CounterActivity : AppCompatActivity() {
         super.onPause()
     }
 
-    override fun onStop() {
-        cancelTask()
-        super.onStop()
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("CURRENT_NUMBER", currNumber.toString())
+        outState.putSerializable("CURR_STATE", state)
+        super.onSaveInstanceState(outState)
     }
 
     private fun buttonClickListener() {
